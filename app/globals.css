@@ -6,8 +6,14 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-sans);
+  --font-display: var(--font-display);
+  --font-script: var(--font-script);
+  --font-heading: var(--font-display);
+  --color-cream: var(--color-cream);
+  --color-brick: var(--color-brick);
+  --color-crimson: var(--color-crimson);
+  --color-gold: var(--color-gold);
+  --color-ink: var(--color-ink);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -47,38 +53,44 @@
 }
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
+  --color-cream: #fff8f8;
+  --color-brick: #9b3729;
+  --color-crimson: #ce0c14;
+  --color-gold: #e2cc64;
+  --color-ink: #241411;
+
+  --background: var(--color-cream);
+  --foreground: var(--color-ink);
+  --card: #ffffff;
+  --card-foreground: var(--color-ink);
+  --popover: #ffffff;
+  --popover-foreground: var(--color-ink);
+  --primary: var(--color-brick);
+  --primary-foreground: var(--color-cream);
+  --secondary: var(--color-gold);
+  --secondary-foreground: var(--color-ink);
+  --muted: oklch(0.96 0.01 30);
+  --muted-foreground: oklch(0.45 0.03 30);
+  --accent: var(--color-crimson);
+  --accent-foreground: #ffffff;
+  --destructive: var(--color-crimson);
+  --border: oklch(0.88 0.02 30);
+  --input: oklch(0.88 0.02 30);
+  --ring: var(--color-crimson);
+  --chart-1: var(--color-brick);
+  --chart-2: var(--color-crimson);
+  --chart-3: var(--color-gold);
+  --chart-4: oklch(0.556 0 0);
   --chart-5: oklch(0.269 0 0);
   --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --sidebar: #ffffff;
+  --sidebar-foreground: var(--color-ink);
+  --sidebar-primary: var(--color-brick);
+  --sidebar-primary-foreground: var(--color-cream);
+  --sidebar-accent: var(--color-gold);
+  --sidebar-accent-foreground: var(--color-ink);
+  --sidebar-border: oklch(0.88 0.02 30);
+  --sidebar-ring: var(--color-crimson);
 }
 
 @layer base {
@@ -90,5 +102,59 @@
   }
   html {
     @apply font-sans;
+  }
+}
+
+/* Scrapbook / vintage valentine decorative utilities */
+@layer utilities {
+  .paper-grain {
+    background-image:
+      radial-gradient(
+        circle at 1px 1px,
+        rgba(36, 20, 17, 0.08) 1px,
+        transparent 0
+      ),
+      url("/textures/paper-grain.png");
+    background-size:
+      18px 18px,
+      cover;
+    background-blend-mode: multiply;
+  }
+
+  .dotted-hearts-bg {
+    background-image: radial-gradient(
+      rgba(155, 55, 41, 0.14) 1.5px,
+      transparent 1.5px
+    );
+    background-size: 16px 16px;
+  }
+
+  .torn-edge-bottom {
+    clip-path: polygon(
+      0% 0%,
+      100% 0%,
+      100% 96%,
+      97% 100%,
+      92% 95%,
+      87% 100%,
+      82% 95%,
+      77% 100%,
+      72% 95%,
+      67% 100%,
+      62% 95%,
+      57% 100%,
+      52% 95%,
+      47% 100%,
+      42% 95%,
+      37% 100%,
+      32% 95%,
+      27% 100%,
+      22% 95%,
+      17% 100%,
+      12% 95%,
+      7% 100%,
+      3% 95%,
+      0% 100%
+    );
   }
 }
