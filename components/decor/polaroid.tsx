@@ -26,7 +26,7 @@ export function Polaroid({ children, caption, rotate = -3, className }: Polaroid
       />
       {children}
       {caption ? (
-        <p className="mt-3 text-center font-script text-xl text-brick">
+        <p className="mt-3 text-center font-handwriting text-xl text-ink">
           {caption}
         </p>
       ) : null}

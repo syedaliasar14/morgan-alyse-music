@@ -8,6 +8,7 @@
   --font-sans: var(--font-sans);
   --font-display: var(--font-display);
   --font-script: var(--font-script);
+  --font-handwriting: var(--font-handwriting);
   --font-heading: var(--font-display);
   --color-cream: var(--color-cream);
   --color-brick: var(--color-brick);
@@ -101,7 +102,13 @@
     @apply bg-background text-foreground;
   }
   html {
-    @apply font-sans;
+    @apply font-sans scroll-smooth;
+  }
+  .btn-primary {
+    @apply rounded-full bg-crimson px-6 py-3 font-semibold text-white shadow-[0_4px_0_0_#9b3729] transition-transform hover:-translate-y-0.5 active:translate-y-0 active:shadow-none;
+  }
+  .btn-outline {
+    @apply rounded-full border-2 border-crimson px-6 py-3 font-semibold shadow-[0_4px_0_0_#9b3729] text-crimson transition-colors hover:bg-crimson hover:text-cream;
   }
 }
 

@@ -7,6 +7,8 @@ import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },
+  { href: "/#events", label: "Events" },
+  { href: "/#merch", label: "Merch" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];
@@ -18,10 +20,9 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 border-b-2 border-brick/20 bg-cream/95 backdrop-blur-sm">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-8">
         <Link href="/" className="flex flex-col leading-none" onClick={() => setOpen(false)}>
-          <span className="font-display text-2xl font-bold italic text-brick sm:text-3xl">
+          <span className="font-handwriting text-2xl text-crimson">
             Morgan Alyse
           </span>
-          <span className="font-script text-lg text-crimson">est. in a love song</span>
         </Link>
 
         <nav className="hidden items-center gap-8 sm:flex">

@@ -9,25 +9,14 @@ export function HeroRelease() {
         <div className="order-2 lg:order-1">
           <span className="font-script text-2xl text-crimson">new single, out now</span>
           <h1 className="mt-2 font-display text-4xl font-bold italic leading-tight text-brick sm:text-6xl">
-            Paper Hearts
+            Title
           </h1>
-          <p className="mt-4 max-w-md text-base leading-relaxed text-ink/70 sm:text-lg">
-            Morgan Alyse&apos;s newest single is a love letter set to sound —
-            equal parts torch song and diary entry. Stream it now or catch it
-            live on the upcoming tour.
-          </p>
           <div className="mt-8 flex flex-wrap gap-4">
-            <a
-              href="#spotify"
-              className="rounded-full bg-crimson px-6 py-3 font-semibold text-white shadow-[0_4px_0_0_#9b3729] transition-transform hover:-translate-y-0.5 active:translate-y-0 active:shadow-none"
-            >
+            <Link href="#spotify" className="btn-primary">
               Listen Now
-            </a>
-            <Link
-              href="/about"
-              className="rounded-full border-2 border-brick px-6 py-3 font-semibold text-brick transition-colors hover:bg-brick hover:text-cream"
-            >
-              Meet Morgan
+            </Link>
+            <Link href="#events" className="btn-outline">
+              See Events
             </Link>
           </div>
         </div>
@@ -35,12 +24,8 @@ export function HeroRelease() {
         <div className="relative order-1 mx-auto w-full max-w-sm lg:order-2">
           <TapePiece className="-top-4 -left-4 z-10" color="crimson" rotate={-8} />
           <TapePiece className="-bottom-4 -right-4 z-10" color="gold" rotate={10} />
-          <div className="border-4 border-white bg-white p-2 shadow-[0_12px_30px_rgba(36,20,17,0.25)]">
-            <PhotoPlaceholder
-              label="Single/Album Cover Art"
-              hint="Square 1:1 image, vintage red & cream tones, e.g. Morgan holding a paper heart or vintage valentine card collage"
-              aspect="square"
-            />
+          <div className="aspect-square rounded bg-white shadow-[0_12px_30px_rgba(36,20,17,0.25)] rotate-3 hover:rotate-1 transition-transform duration-300 hover:scale-105">
+            <div className="aspect-square w-full bg-cream" />
           </div>
         </div>
       </div>

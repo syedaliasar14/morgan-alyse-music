@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Poppins, Playfair_Display, Caveat } from "next/font/google";
+import { Poppins, Playfair_Display, Caveat, Beth_Ellen } from "next/font/google";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import "./globals.css";
@@ -23,17 +23,23 @@ const caveat = Caveat({
   weight: ["500", "600", "700"],
 });
 
+const bethEllen = Beth_Ellen({
+  variable: "--font-handwriting",
+  subsets: ["latin"],
+  weight: ["400"],
+});
+
 export const metadata: Metadata = {
-  title: "Morgan Alyse | Official Site",
-  description:
-    "Official site for musician Morgan Alyse — new releases, tour dates, and merch.",
+  title: "Morgan Alyse",
+  description: "Official site for Morgan Alyse — new releases, events, and more by Worcester's Sweetheart, herself.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${poppins.variable} ${playfairDisplay.variable} ${caveat.variable} h-full antialiased`}
+      data-scroll-behavior="smooth"
+      className={`${poppins.variable} ${playfairDisplay.variable} ${caveat.variable} ${bethEllen.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-cream text-ink">
         <SiteHeader />

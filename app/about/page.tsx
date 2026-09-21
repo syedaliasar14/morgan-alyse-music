@@ -12,7 +12,7 @@ export default function AboutPage() {
     <div className="dotted-hearts-bg">
       <div className="mx-auto max-w-5xl px-5 sm:px-8">
         <div className="pt-16 pb-6 text-center sm:pt-24">
-          <span className="font-script text-2xl text-crimson">the scrapbook</span>
+          {/* <span className="font-script text-2xl text-crimson">the scrapbook</span> */}
           <h1 className="mt-1 font-display text-4xl font-bold italic text-brick sm:text-5xl">
             About Morgan
           </h1>
@@ -27,14 +27,7 @@ export default function AboutPage() {
           align="left"
         >
           <p>
-            Morgan Alyse grew up scribbling lyrics in the margins of school
-            notebooks and taping polaroids to her bedroom wall. Music found
-            her early — she wrote her first song at eleven, on a hand-me-down
-            guitar with a heart sticker over the crack in the body.
-          </p>
-          <p>
-            That same sense of handmade sentimentality still shapes every
-            record she makes today.
+            Morgan Alyse is a songwriter and performer currently based out of Worcester, MA. Originally from Connecticut Morgan is now well-known in the central mass open mic community for her Jazzy, folk, uke stylings, and soulfully sweet original songs. While the ukulele is her main instrument, she has been known to break out a guitar, mandolin, and even a dulcimer from time to time. In November 2023 Morgan became the winner of the first annual Otter River Song Writers Contest, at the Brew Barn in Phillipston MA. She released her first two-track EP Quarantine Lullabies in the spring of 2020, and released two Singles; grow, and Got 40 this year. Both were featured in Worcester Magazine.
           </p>
         </PhotoTextSection>
 
