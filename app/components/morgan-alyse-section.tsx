@@ -7,7 +7,7 @@ import { HeartDivider } from "@/components/decor/heart-divider";
 export function MorganAlyseSection() {
   return (
     <section className="bg-white relative overflow-hidden">
-      <div className="absolute inset-0 z-0 bg-[url('/textures/paper-grain.png')] bg-cover" />
+      <div className="absolute inset-0 z-0" />
       <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24 z-10 relative">
         <HeartDivider className="mb-12" />
         <div className="grid gap-10 lg:grid-cols-[minmax(0,320px)_1fr] lg:items-center lg:gap-16">

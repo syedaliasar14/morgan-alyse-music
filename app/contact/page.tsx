@@ -19,10 +19,10 @@ export default function ContactPage() {
           <h1 className="mt-1 font-display text-4xl font-bold italic text-brick">
             Get In Touch
           </h1>
-          <p className="mt-3 text-ink/70">
+          {/* <p className="mt-3 text-ink/70">
             Booking, press, or just want to share how a song made you feel?
             Send a note below.
-          </p>
+          </p> */}
         </div>
 
         <div className="mt-8">
