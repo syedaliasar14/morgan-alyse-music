@@ -1,39 +1,44 @@
 import type { ReactNode } from "react";
-import { Polaroid } from "@/components/decor/polaroid";
-import { PhotoPlaceholder } from "@/components/decor/photo-placeholder";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
+import { Polaroid } from "@/components/decor/polaroid";
 
 type PhotoTextSectionProps = {
-  eyebrow: string;
+  subtitle?: string;
   title: string;
+  imageSrc: string;
   children: ReactNode;
-  photoLabel: string;
-  photoHint: string;
-  caption?: string;
+  className?: string;
   align?: "left" | "right";
 };
 
 /** Alternating photo + text block used to build out the About page story. */
 export function PhotoTextSection({
-  eyebrow,
+  subtitle,
   title,
+  imageSrc,
   children,
-  photoLabel,
-  photoHint,
-  caption,
+  className,
   align = "left",
 }: PhotoTextSectionProps) {
+  const photoClassName = cn(
+    "mx-auto w-full max-w-xs lg:mx-0 lg:w-[280px] lg:shrink-0",
+    align === "right" && "lg:order-2"
+  );
+
+  const textClassName = cn("min-w-0 flex-1", align === "right" && "lg:order-1");
+
   const photo = (
-    <div className="mx-auto w-full max-w-xs lg:mx-0">
-      <Polaroid caption={caption} rotate={align === "left" ? -3 : 3}>
-        <PhotoPlaceholder label={photoLabel} hint={photoHint} aspect="portrait" />
+    <div className={photoClassName}>
+      <Polaroid caption={" "}>
+        <Image src={imageSrc} alt={title} width={300} height={400} />
       </Polaroid>
     </div>
   );
 
   const text = (
-    <div>
-      <span className="font-script text-2xl text-crimson">{eyebrow}</span>
+    <div className={textClassName}>
+      <span className="font-script text-2xl text-crimson">{subtitle}</span>
       <h2 className="mt-1 font-display text-3xl font-bold italic text-brick sm:text-4xl">
         {title}
       </h2>
@@ -46,20 +51,12 @@ export function PhotoTextSection({
   return (
     <section
       className={cn(
-        "grid gap-10 py-14 sm:py-20 lg:grid-cols-[minmax(0,280px)_1fr] lg:items-center lg:gap-16"
+        "max-w-5xl mx-auto px-5 sm:px-8 flex flex-col gap-10 py-14 sm:py-20 lg:flex-row lg:items-center lg:gap-16",
+        className
       )}
     >
-      {align === "left" ? (
-        <>
-          {photo}
-          {text}
-        </>
-      ) : (
-        <>
-          <div className="lg:order-2">{photo}</div>
-          <div className="lg:order-1">{text}</div>
-        </>
-      )}
+      {photo}
+      {text}
     </section>
   );
 }

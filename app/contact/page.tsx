@@ -3,7 +3,7 @@ import { ContactForm } from "@/app/contact/components/contact-form";
 import { TapePiece } from "@/components/decor/tape-piece";
 
 export const metadata: Metadata = {
-  title: "Contact | Morgan Alyse",
+  title: "Contact Morgan Alyse",
   description: "Get in touch with Morgan Alyse.",
 };
 

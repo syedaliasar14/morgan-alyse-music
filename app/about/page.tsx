@@ -3,27 +3,26 @@ import { PhotoTextSection } from "@/app/about/components/photo-text-section";
 import { HeartDivider } from "@/components/decor/heart-divider";
 
 export const metadata: Metadata = {
-  title: "About | Morgan Alyse",
+  title: "About Morgan Alyse",
   description: "The story behind Morgan Alyse's music.",
 };
 
 export default function AboutPage() {
   return (
     <div className="dotted-hearts-bg">
-      <div className="mx-auto max-w-5xl px-5 sm:px-8">
-        <div className="pt-16 pb-6 text-center sm:pt-24">
+      <div className="">
+        <div className="pt-16 pb-6 text-center sm:pt-24 bg-[url('/textures/floral-bg.png')] bg-cover relative">
+          {/* <div className="absolute inset-0 bg-black/30"></div> */}
           {/* <span className="font-script text-2xl text-crimson">the scrapbook</span> */}
-          <h1 className="mt-1 font-display text-4xl font-bold italic text-brick sm:text-5xl">
-            About Morgan
-          </h1>
+          {/* <h1 className="mt-1 z-10 relative max-w-5xl mx-auto px-5 sm:px-8 font-display text-4xl font-bold italic text-white sm:text-5xl">
+            About Morgan Alyse
+          </h1> */}
         </div>
 
         <PhotoTextSection
-          eyebrow="chapter one"
+          subtitle="chapter one"
           title="Her Story"
-          photoLabel="Childhood / early-life photo"
-          photoHint="Old-style snapshot of Morgan as a kid or teen with a guitar/piano"
-          caption="little heart, big dreams"
+          imageSrc="/morgan-alyse.jpg"
           align="left"
         >
           <p>
@@ -34,11 +33,9 @@ export default function AboutPage() {
         <HeartDivider />
 
         <PhotoTextSection
-          eyebrow="chapter two"
+          subtitle="chapter two"
           title="The Sound"
-          photoLabel="In-studio / songwriting photo"
-          photoHint="Candid shot of Morgan writing or recording, warm lighting"
-          caption="paper hearts & piano keys"
+          imageSrc="/morgan-alyse.jpg"
           align="right"
         >
           <p>
@@ -53,11 +50,9 @@ export default function AboutPage() {
         <HeartDivider />
 
         <PhotoTextSection
-          eyebrow="chapter three"
+          subtitle="chapter three"
           title="On Stage"
-          photoLabel="Live performance photo"
-          photoHint="Live show shot, warm stage lighting, red/gold tones"
-          caption="see you at the show"
+          imageSrc="/morgan-alyse.jpg"
           align="left"
         >
           <p>

@@ -21,7 +21,7 @@ export function MerchSection() {
           <h2 className="mt-1 mb-2 font-display text-3xl font-bold italic text-brick sm:text-4xl">
             Merch & Digital Tracks
           </h2>
-          <span className="font-script text-2xl text-crimson">Full collection available on 
+          <span className="font-script text-2xl text-ink">Full collection available on 
             <Link href={BANDCAMP_MERCH_URL} target="_blank" rel="noopener noreferrer" className="underline ml-1">
               Bandcamp
             </Link>
