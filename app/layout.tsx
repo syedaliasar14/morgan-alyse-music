@@ -3,6 +3,9 @@ import { Poppins, Playfair_Display, Caveat, Beth_Ellen } from "next/font/google"
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import "./globals.css";
+import { DisableDraftMode } from "@/components/disable-draft-mode";
+import { VisualEditing } from "next-sanity/visual-editing";
+import { draftMode } from "next/headers";
 
 const poppins = Poppins({
   variable: "--font-sans",
@@ -34,7 +37,7 @@ export const metadata: Metadata = {
   description: "Official site for Morgan Alyse — new releases, events, and more by Worcester's Sweetheart, herself.",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
@@ -45,6 +48,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <SiteHeader />
         <main className="flex flex-1 flex-col">{children}</main>
         <SiteFooter />
+        {(await draftMode()).isEnabled && (
+          <>
+            <VisualEditing />
+            <DisableDraftMode />
+          </>
+        )}
       </body>
     </html>
   );
