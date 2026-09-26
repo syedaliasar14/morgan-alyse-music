@@ -7,6 +7,7 @@ type PhotoTextSectionProps = {
   subtitle?: string;
   title: string;
   imageSrc: string;
+  imageAlt?: string;
   heartSrc: string;
   children: ReactNode;
   className?: string;
@@ -18,6 +19,7 @@ export function PhotoTextSection({
   subtitle,
   title,
   imageSrc,
+  imageAlt,
   heartSrc,
   children,
   className,
@@ -33,7 +35,7 @@ export function PhotoTextSection({
   const photo = (
     <div className={cn(photoClassName, "relative")}>
       <Polaroid caption={" "}>
-        <Image src={imageSrc} alt={title} width={300} height={400} />
+        <Image src={imageSrc} alt={imageAlt || title} width={300} height={400} />
       </Polaroid>
       <Image
         src={heartSrc}
@@ -51,7 +53,7 @@ export function PhotoTextSection({
 
   const text = (
     <div className={textClassName}>
-      <span className="font-script text-2xl text-crimson">{subtitle}</span>
+      {subtitle && <span className="font-script text-2xl text-crimson">{subtitle}</span>}
       <h2 className="mt-1 font-display text-3xl font-bold italic text-brick sm:text-4xl">
         {title}
       </h2>

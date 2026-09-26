@@ -95,6 +95,41 @@ export type HomePage = {
   gallery?: HomePageGallery;
 };
 
+export type SiteSettings = {
+  _id: string;
+  _type: "siteSettings";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title: string;
+  description: string;
+  instagramUrl?: string;
+  spotifyUrl?: string;
+  bandcampMerchUrl?: string;
+};
+
+export type AboutPageSection = {
+  _type: "aboutPageSection";
+  title: string;
+  text: string;
+  image?: HomePageImage;
+};
+
+export type AboutPage = {
+  _id: string;
+  _type: "aboutPage";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  morganSection?: AboutPageSection;
+  bandSection?: AboutPageSection;
+  additionalSections?: Array<
+    {
+      _key: string;
+    } & AboutPageSection
+  >;
+};
+
 export type SanityImageCrop = {
   _type: "sanity.imageCrop";
   top: number;
@@ -109,19 +144,6 @@ export type SanityImageHotspot = {
   y: number;
   height: number;
   width: number;
-};
-
-export type SiteSettings = {
-  _id: string;
-  _type: "siteSettings";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title: string;
-  description: string;
-  instagramUrl?: string;
-  spotifyUrl?: string;
-  bandcampMerchUrl?: string;
 };
 
 export type SanityImagePaletteSwatch = {
@@ -237,9 +259,11 @@ export type AllSanitySchemaTypes =
   | HomePageMorgan
   | HomePageHero
   | HomePage
+  | SiteSettings
+  | AboutPageSection
+  | AboutPage
   | SanityImageCrop
   | SanityImageHotspot
-  | SiteSettings
   | SanityImagePaletteSwatch
   | SanityImagePalette
   | SanityImageDimensions
@@ -250,10 +274,71 @@ export type AllSanitySchemaTypes =
   | Geopoint
   | Slug;
 
+// Source: sanity/queries/about-page.ts
+// Variable: ABOUT_PAGE_QUERY
+// Query: *[_id == "aboutPage"][0]{  "morganSection": morganSection{  _key,  title,  text,  image{    alt,    asset->{ _id, url }  }},  "bandSection": bandSection{  _key,  title,  text,  image{    alt,    asset->{ _id, url }  }},  "additionalSections": additionalSections[]{  _key,  title,  text,  image{    alt,    asset->{ _id, url }  }}}
+export type ABOUT_PAGE_QUERY_RESULT =
+  | {
+      morganSection: null;
+      bandSection: null;
+      additionalSections: null;
+    }
+  | {
+      morganSection: {
+        _key: null;
+        title: string;
+        text: string;
+        image: {
+          alt: string | null;
+          asset: {
+            _id: string;
+            url: string;
+          } | null;
+        } | null;
+      } | null;
+      bandSection: {
+        _key: null;
+        title: string;
+        text: string;
+        image: {
+          alt: string | null;
+          asset: {
+            _id: string;
+            url: string;
+          } | null;
+        } | null;
+      } | null;
+      additionalSections: Array<{
+        _key: string;
+        title: string;
+        text: string;
+        image: {
+          alt: string | null;
+          asset: {
+            _id: string;
+            url: string;
+          } | null;
+        } | null;
+      }> | null;
+    }
+  | null;
+
 // Source: sanity/queries/home-page.ts
 // Variable: HOME_PAGE_QUERY
 // Query: *[_id == "homePage"][0]{  "hero": {    "title": coalesce(hero.title, title),    "subtitle": coalesce(hero.subtitle, subtitle),    "buttonText": coalesce(hero.buttonText, "Listen Now"),    "albumImage": coalesce(hero.albumImage, albumImage){      asset->{        _id,        url,        metadata{ lqip, dimensions{ width, height } }      },      alt,      hotspot,      crop    }  },  morgan{    title,    text,    buttonText,    image{      asset->{        _id,        url,        metadata{ lqip, dimensions{ width, height } }      },      alt,      hotspot,      crop    }  },  events{    title,    hidePastEvents,    events[]{      _key,      eventDate,      title,      description,      link    }  },  merch{    title,    description,    buttonText  },  gallery{    images[]{      _key,      asset->{        _id,        url,        metadata{ lqip, dimensions{ width, height } }      },      alt,      hotspot,      crop    }  }}
 export type HOME_PAGE_QUERY_RESULT =
+  | {
+      hero: {
+        title: null;
+        subtitle: null;
+        buttonText: "Listen Now";
+        albumImage: null;
+      };
+      morgan: null;
+      events: null;
+      merch: null;
+      gallery: null;
+    }
   | {
       hero: {
         title: string;
@@ -390,6 +475,7 @@ export type SITE_SETTINGS_QUERY_RESULT =
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
+    '*[_id == "aboutPage"][0]{\n  "morganSection": morganSection{\n  _key,\n  title,\n  text,\n  image{\n    alt,\n    asset->{ _id, url }\n  }\n},\n  "bandSection": bandSection{\n  _key,\n  title,\n  text,\n  image{\n    alt,\n    asset->{ _id, url }\n  }\n},\n  "additionalSections": additionalSections[]{\n  _key,\n  title,\n  text,\n  image{\n    alt,\n    asset->{ _id, url }\n  }\n}\n}': ABOUT_PAGE_QUERY_RESULT;
     '*[_id == "homePage"][0]{\n  "hero": {\n    "title": coalesce(hero.title, title),\n    "subtitle": coalesce(hero.subtitle, subtitle),\n    "buttonText": coalesce(hero.buttonText, "Listen Now"),\n    "albumImage": coalesce(hero.albumImage, albumImage){\n      asset->{\n        _id,\n        url,\n        metadata{ lqip, dimensions{ width, height } }\n      },\n      alt,\n      hotspot,\n      crop\n    }\n  },\n  morgan{\n    title,\n    text,\n    buttonText,\n    image{\n      asset->{\n        _id,\n        url,\n        metadata{ lqip, dimensions{ width, height } }\n      },\n      alt,\n      hotspot,\n      crop\n    }\n  },\n  events{\n    title,\n    hidePastEvents,\n    events[]{\n      _key,\n      eventDate,\n      title,\n      description,\n      link\n    }\n  },\n  merch{\n    title,\n    description,\n    buttonText\n  },\n  gallery{\n    images[]{\n      _key,\n      asset->{\n        _id,\n        url,\n        metadata{ lqip, dimensions{ width, height } }\n      },\n      alt,\n      hotspot,\n      crop\n    }\n  }\n}': HOME_PAGE_QUERY_RESULT;
     '*[_id == "siteSettings"][0]{\n  title,\n  description,\n  instagramUrl,\n  spotifyUrl,\n  bandcampMerchUrl\n}': SITE_SETTINGS_QUERY_RESULT;
   }
