@@ -43,7 +43,7 @@ export function SiteHeader() {
 
         <Sheet>
           <SheetTrigger className="sm:hidden">
-            <AlignJustify className="h-5 w-5" />
+            <AlignJustify className="h-5 w-5 text-cream" />
           </SheetTrigger>
 
           <SheetContent side="right" className="bg-cream text-ink">

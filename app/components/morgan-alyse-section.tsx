@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Polaroid } from "@/components/decor/polaroid";
-import { PhotoPlaceholder } from "@/components/decor/photo-placeholder";
 import { HeartDivider } from "@/components/decor/heart-divider";
 
 export function MorganAlyseSection() {
@@ -18,6 +17,7 @@ export function MorganAlyseSection() {
                 alt="Portrait of Morgan Alyse"
                 width={320}
                 height={400}
+                loading="eager"
               />
             </Polaroid>
           </div>

@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { Poppins, Playfair_Display, Caveat, Beth_Ellen } from "next/font/google";
-import { SiteHeader } from "@/components/site-header";
-import { SiteFooter } from "@/components/site-footer";
+import { SiteShell } from "@/components/site-shell";
 import "./globals.css";
 import { DisableDraftMode } from "@/components/disable-draft-mode";
 import { VisualEditing } from "next-sanity/visual-editing";
 import { draftMode } from "next/headers";
+import { sanityFetch } from "@/sanity/lib/live";
+import { SITE_SETTINGS_QUERY } from "@/sanity/queries/site-settings";
 
 const poppins = Poppins({
   variable: "--font-sans",
@@ -32,12 +33,20 @@ const bethEllen = Beth_Ellen({
   weight: ["400"],
 });
 
-export const metadata: Metadata = {
-  title: "Morgan Alyse",
-  description: "Official site for Morgan Alyse — new releases, events, and more by Worcester's Sweetheart, herself.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const { data: siteSettings } = await sanityFetch({ query: SITE_SETTINGS_QUERY });
+
+  return {
+    title: siteSettings?.title ?? "Morgan Alyse",
+    description:
+      siteSettings?.description ??
+      "Official site for Morgan Alyse — new releases, events, and more by Worcester's Sweetheart, herself.",
+  };
+}
 
 export default async function RootLayout({ children }: LayoutProps<"/">) {
+  const { data: siteSettings } = await sanityFetch({ query: SITE_SETTINGS_QUERY });
+
   return (
     <html
       lang="en"
@@ -45,9 +54,12 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
       className={`${poppins.variable} ${playfairDisplay.variable} ${caveat.variable} ${bethEllen.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-cream text-ink">
-        <SiteHeader />
-        <main className="flex flex-1 flex-col">{children}</main>
-        <SiteFooter />
+        <SiteShell
+          instagramUrl={siteSettings?.instagramUrl ?? undefined}
+          spotifyUrl={siteSettings?.spotifyUrl ?? undefined}
+        >
+          {children}
+        </SiteShell>
         {(await draftMode()).isEnabled && (
           <>
             <VisualEditing />

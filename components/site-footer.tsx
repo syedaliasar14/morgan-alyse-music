@@ -1,14 +1,19 @@
 import Link from "next/link";
 import { Camera, Music2, Mail } from "lucide-react";
 
-export function SiteFooter() {
+interface SiteFooterProps {
+  instagramUrl?: string;
+  spotifyUrl?: string;
+}
+
+export function SiteFooter({ instagramUrl, spotifyUrl }: SiteFooterProps) {
   return (
     <footer className="border-t-4 border-gold bg-brick text-cream">
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-5 py-10 text-center sm:px-8">
         <span className="font-handwriting text-2xl">Morgan Alyse</span>
         <div className="flex items-center gap-5">
           <Link
-            href="https://instagram.com/"
+            href={instagramUrl || "https://instagram.com/"}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Instagram"
@@ -20,7 +25,7 @@ export function SiteFooter() {
             </svg>
           </Link>
           <Link
-            href="https://open.spotify.com/"
+            href={spotifyUrl || "https://open.spotify.com/"}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Spotify"

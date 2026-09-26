@@ -2,7 +2,7 @@ import { TapePiece } from "@/components/decor/tape-piece";
 
 export function SpotifySection() {
   return (
-    <section id="spotify" className="bg-[url('/textures/floral-bg.png')] bg-cover relative">
+    <section id="spotify" className="bg-[url('/textures/floral.png')] bg-cover relative">
       {/* <div className="absolute inset-0 bg-black/30 z-0"/> */}
       <div className="mx-auto max-w-3xl px-5 py-16 text-center sm:px-8 sm:py-24">
         {/* <span className="font-script text-2xl text-crimson">press play</span> */}

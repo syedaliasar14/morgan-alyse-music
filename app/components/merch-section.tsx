@@ -1,4 +1,3 @@
-import { PhotoPlaceholder } from "@/components/decor/photo-placeholder";
 import { ExternalLink } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,7 +9,6 @@ const MERCH_ITEMS = [
 ];
 
 const BANDCAMP_MERCH_URL = "https://morganalyse1.bandcamp.com/merch";
-const BANDCAMP_MUSIC_URL = "https://morganalyse1.bandcamp.com/music";
 
 export function MerchSection() {
   return (
@@ -21,9 +19,9 @@ export function MerchSection() {
           <h2 className="mt-1 mb-2 font-display text-3xl font-bold italic text-brick sm:text-4xl">
             Merch & Digital Tracks
           </h2>
-          <span className="font-script text-2xl text-ink">Full collection available on 
-            <Link href={BANDCAMP_MERCH_URL} target="_blank" rel="noopener noreferrer" className="underline ml-1">
-              Bandcamp
+          <span className="font-script text-2xl text-ink">
+            <Link href={BANDCAMP_MERCH_URL} target="_blank" rel="noopener noreferrer" className="hover:underline">
+              Full collection available on Bandcamp <ExternalLink className="ml-1 inline-block" size={16} />
             </Link>
           </span>
         </div>

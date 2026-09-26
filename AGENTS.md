@@ -14,3 +14,9 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Use Tailwind CSS
 - When needed break up pages or large/heavy components into readable and modular components and place them inside a "components" folder in the subdirectory
 - Name new component files in kebab-case
+
+### Sanity CMS Instructions
+- Ignore this section if the request doesn't require Sanity or Sanity is not in the project
+- Add queries in sanity/queries folder and split them into files as needed
+- Try to use sanityFetch to retrieve Sanity data
+- Do ```npm run typegen``` when you add/update queries

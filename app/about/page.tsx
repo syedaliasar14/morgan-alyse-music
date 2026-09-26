@@ -11,7 +11,7 @@ export default function AboutPage() {
   return (
     <div className="dotted-hearts-bg">
       <div className="">
-        <div className="pt-16 pb-6 text-center sm:pt-24 bg-[url('/textures/floral-bg.png')] bg-cover relative">
+        <div className="pt-16 pb-6 text-center sm:pt-24 bg-[url('/textures/floral.png')] bg-cover relative">
           {/* <div className="absolute inset-0 bg-black/30"></div> */}
           {/* <span className="font-script text-2xl text-crimson">the scrapbook</span> */}
           {/* <h1 className="mt-1 z-10 relative max-w-5xl mx-auto px-5 sm:px-8 font-display text-4xl font-bold italic text-white sm:text-5xl">
