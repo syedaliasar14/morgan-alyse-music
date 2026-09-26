@@ -1,4 +1,5 @@
 import { ExternalLink } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 type Event = {
@@ -46,9 +47,27 @@ export function CalendarSection() {
       <div className="mx-auto max-w-4xl px-5 py-16 sm:px-8 sm:py-24">
         <div className="text-center">
           {/* <span className="font-script text-2xl text-crimson">save the date</span> */}
-          <h2 className="mt-1 font-display text-3xl font-bold italic text-brick sm:text-4xl">
-            Upcoming Events
-          </h2>
+          <div className="flex items-center justify-center gap-2 sm:gap-3">
+            <Image
+              src="/decor/hand-drawn-heart1.png"
+              alt=""
+              aria-hidden="true"
+              width={100}
+              height={100}
+              className="h-8 w-8 object-contain sm:h-11 sm:w-11"
+            />
+            <h2 className="mt-1 font-display text-2xl font-bold italic text-brick sm:text-4xl">
+              Upcoming Events
+            </h2>
+            <Image
+              src="/decor/hand-drawn-heart1.png"
+              alt=""
+              aria-hidden="true"
+              width={100}
+              height={100}
+              className="h-8 w-8 -scale-x-100 object-contain sm:h-11 sm:w-11"
+            />
+          </div>
         </div>
 
         <ul className="mt-10 flex flex-col gap-4">

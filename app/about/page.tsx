@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { PhotoTextSection } from "@/app/about/components/photo-text-section";
 import { HeartDivider } from "@/components/decor/heart-divider";
 
@@ -23,6 +24,7 @@ export default function AboutPage() {
           subtitle="chapter one"
           title="Her Story"
           imageSrc="/morgan-alyse.jpg"
+          heartSrc="/decor/scrapbook-heart1.png"
           align="left"
         >
           <p>
@@ -36,6 +38,7 @@ export default function AboutPage() {
           subtitle="chapter two"
           title="The Sound"
           imageSrc="/morgan-alyse.jpg"
+          heartSrc="/decor/hand-drawn-heart1.png"
           align="right"
         >
           <p>
@@ -53,6 +56,7 @@ export default function AboutPage() {
           subtitle="chapter three"
           title="On Stage"
           imageSrc="/morgan-alyse.jpg"
+          heartSrc="/decor/scrapbook-heart2.png"
           align="left"
         >
           <p>

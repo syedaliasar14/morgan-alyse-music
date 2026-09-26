@@ -26,13 +26,22 @@ export function MorganAlyseSection() {
               Morgan Alyse
             </h2>
             <p className="mt-4 max-w-xl text-ink leading-relaxed">
-              Known as "Worcester's Sweetheart", Morgan Alyse is a songwriter and performer, known for her jazzy folk, ukulele-driven sound and soulful original songs. She brings warmth and heart to every performance.
+              Known as &quot;Worcester&apos;s Sweetheart&quot;, Morgan Alyse is a songwriter and performer, known for her jazzy folk, ukulele-driven sound and soulful original songs. She brings warmth and heart to every performance.
             </p>
             <Link href="/about" className="btn-primary mt-8 flex w-max">
               Read more
             </Link>
           </div>
         </div>
+
+        <Image
+          src="/decor/scrapbook-heart2.png"
+          alt=""
+          aria-hidden="true"
+          width={160}
+          height={120}
+          className="pointer-events-none absolute right-4 bottom-3 z-20 h-16 w-24 object-contain sm:right-8 sm:bottom-5 sm:h-24 sm:w-32"
+        />
       </div>
     </section>
   );

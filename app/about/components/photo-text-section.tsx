@@ -7,6 +7,7 @@ type PhotoTextSectionProps = {
   subtitle?: string;
   title: string;
   imageSrc: string;
+  heartSrc: string;
   children: ReactNode;
   className?: string;
   align?: "left" | "right";
@@ -17,6 +18,7 @@ export function PhotoTextSection({
   subtitle,
   title,
   imageSrc,
+  heartSrc,
   children,
   className,
   align = "left",
@@ -29,10 +31,21 @@ export function PhotoTextSection({
   const textClassName = cn("min-w-0 flex-1", align === "right" && "lg:order-1");
 
   const photo = (
-    <div className={photoClassName}>
+    <div className={cn(photoClassName, "relative")}>
       <Polaroid caption={" "}>
         <Image src={imageSrc} alt={title} width={300} height={400} />
       </Polaroid>
+      <Image
+        src={heartSrc}
+        alt=""
+        aria-hidden="true"
+        width={100}
+        height={100}
+        className={cn(
+          "pointer-events-none absolute -bottom-4 z-10 h-16 w-16 object-contain sm:h-20 sm:w-20",
+          align === "right" ? "-right-4" : "-left-4"
+        )}
+      />
     </div>
   );
 

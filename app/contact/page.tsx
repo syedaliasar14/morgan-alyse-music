@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { ContactForm } from "@/app/contact/components/contact-form";
 import { TapePiece } from "@/components/decor/tape-piece";
 
@@ -15,7 +16,15 @@ export default function ContactPage() {
         <TapePiece className="-top-4 right-10 z-10" color="crimson" rotate={6} />
 
         <div className="text-center">
-          <span className="font-script text-2xl text-crimson">say hello</span>
+          <Image
+            src="/decor/hand-drawn-heart2.png"
+            alt=""
+            aria-hidden="true"
+            width={120}
+            height={100}
+            className="mx-auto mb-2 h-10 w-14 object-contain"
+          />
+          {/* <span className="font-script text-2xl text-crimson">say hello</span> */}
           <h1 className="mt-1 font-display text-4xl font-bold italic text-brick">
             Get In Touch
           </h1>
