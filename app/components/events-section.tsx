@@ -83,7 +83,7 @@ export async function EventsSection({ homePage }: { homePage: HOME_PAGE_QUERY_RE
                     href={event.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex btn-outline gap-2 items-center text-sm w-max self-end"
+                    className="flex btn-outline gap-2 items-center text-sm w-max self-end flex-shrink-0"
                   >
                     More info <ExternalLink className="h-4 w-4" />
                   </Link>
