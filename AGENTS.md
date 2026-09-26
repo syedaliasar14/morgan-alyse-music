@@ -20,3 +20,4 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Add queries in sanity/queries folder and split them into files as needed
 - Try to use sanityFetch to retrieve Sanity data
 - Do ```npm run typegen``` when you add/update queries
+- When page content is being connected with Sanity, break up pages into section objects if needed, like Hero Section, About Section for the Home Page singleton (and set its Sanity icon to DocumentIcon)
