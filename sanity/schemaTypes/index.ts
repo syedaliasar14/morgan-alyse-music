@@ -1,8 +1,27 @@
 import { type SchemaTypeDefinition } from 'sanity'
 
-import { homePage } from './homePage'
+import {
+  homePage,
+  homePageEvent,
+  homePageEvents,
+  homePageGallery,
+  homePageHero,
+  homePageImage,
+  homePageMerch,
+  homePageMorgan,
+} from './homePage'
 import { siteSettings } from './siteSettings'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [siteSettings, homePage],
+  types: [
+    siteSettings,
+    homePage,
+    homePageHero,
+    homePageMorgan,
+    homePageEvent,
+    homePageEvents,
+    homePageMerch,
+    homePageImage,
+    homePageGallery,
+  ],
 }

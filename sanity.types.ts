@@ -15,11 +15,71 @@
 export declare const internalGroqTypeReferenceTo: unique symbol;
 
 // Source: schema.json
+export type HomePageGallery = {
+  _type: "homePageGallery";
+  images?: Array<
+    {
+      _key: string;
+    } & HomePageImage
+  >;
+};
+
 export type SanityImageAssetReference = {
   _ref: string;
   _type: "reference";
   _weak?: boolean;
   [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+};
+
+export type HomePageImage = {
+  _type: "homePageImage";
+  asset?: SanityImageAssetReference;
+  media?: unknown;
+  hotspot?: SanityImageHotspot;
+  crop?: SanityImageCrop;
+  alt?: string;
+};
+
+export type HomePageMerch = {
+  _type: "homePageMerch";
+  title?: string;
+  description?: string;
+  buttonText?: string;
+};
+
+export type HomePageEvents = {
+  _type: "homePageEvents";
+  title?: string;
+  hidePastEvents?: boolean;
+  events?: Array<
+    {
+      _key: string;
+    } & HomePageEvent
+  >;
+};
+
+export type HomePageEvent = {
+  _type: "homePageEvent";
+  eventDate: string;
+  title?: string;
+  description?: string;
+  link?: string;
+};
+
+export type HomePageMorgan = {
+  _type: "homePageMorgan";
+  title?: string;
+  text?: string;
+  image?: HomePageImage;
+  buttonText?: string;
+};
+
+export type HomePageHero = {
+  _type: "homePageHero";
+  title?: string;
+  subtitle?: string;
+  buttonText?: string;
+  albumImage?: HomePageImage;
 };
 
 export type HomePage = {
@@ -28,16 +88,11 @@ export type HomePage = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  title: string;
-  subtitle?: string;
-  albumImage?: {
-    asset?: SanityImageAssetReference;
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-  };
+  hero?: HomePageHero;
+  morgan?: HomePageMorgan;
+  events?: HomePageEvents;
+  merch?: HomePageMerch;
+  gallery?: HomePageGallery;
 };
 
 export type SanityImageCrop = {
@@ -66,6 +121,7 @@ export type SiteSettings = {
   description: string;
   instagramUrl?: string;
   spotifyUrl?: string;
+  bandcampMerchUrl?: string;
 };
 
 export type SanityImagePaletteSwatch = {
@@ -172,7 +228,14 @@ export type Slug = {
 };
 
 export type AllSanitySchemaTypes =
+  | HomePageGallery
   | SanityImageAssetReference
+  | HomePageImage
+  | HomePageMerch
+  | HomePageEvents
+  | HomePageEvent
+  | HomePageMorgan
+  | HomePageHero
   | HomePage
   | SanityImageCrop
   | SanityImageHotspot
@@ -189,61 +252,137 @@ export type AllSanitySchemaTypes =
 
 // Source: sanity/queries/home-page.ts
 // Variable: HOME_PAGE_QUERY
-// Query: *[_id == "homePage"][0]{  title,  subtitle,  albumImage{    asset->{      _id,      url,      metadata{ lqip, dimensions{ width, height } }    },    alt,    hotspot,    crop  }}
+// Query: *[_id == "homePage"][0]{  "hero": {    "title": coalesce(hero.title, title),    "subtitle": coalesce(hero.subtitle, subtitle),    "buttonText": coalesce(hero.buttonText, "Listen Now"),    "albumImage": coalesce(hero.albumImage, albumImage){      asset->{        _id,        url,        metadata{ lqip, dimensions{ width, height } }      },      alt,      hotspot,      crop    }  },  morgan{    title,    text,    buttonText,    image{      asset->{        _id,        url,        metadata{ lqip, dimensions{ width, height } }      },      alt,      hotspot,      crop    }  },  events{    title,    hidePastEvents,    events[]{      _key,      eventDate,      title,      description,      link    }  },  merch{    title,    description,    buttonText  },  gallery{    images[]{      _key,      asset->{        _id,        url,        metadata{ lqip, dimensions{ width, height } }      },      alt,      hotspot,      crop    }  }}
 export type HOME_PAGE_QUERY_RESULT =
   | {
-      title: string;
-      subtitle: null;
-      albumImage: null;
+      hero: {
+        title: string;
+        subtitle: null;
+        buttonText: "Listen Now";
+        albumImage: null;
+      };
+      morgan: null;
+      events: null;
+      merch: null;
+      gallery: null;
     }
   | {
-      title: string | null;
-      subtitle: null;
-      albumImage: null;
+      hero: {
+        title: string | null;
+        subtitle: null;
+        buttonText: "Listen Now";
+        albumImage: null;
+      };
+      morgan: null;
+      events: null;
+      merch: null;
+      gallery: null;
     }
   | {
-      title: string;
-      subtitle: string | null;
-      albumImage: {
-        asset: {
-          _id: string;
-          url: string;
-          metadata: {
-            lqip: string | null;
-            dimensions: {
-              width: number;
-              height: number;
+      hero: {
+        title: string | null;
+        subtitle: string | null;
+        buttonText: string | "Listen Now";
+        albumImage: {
+          asset: {
+            _id: string;
+            url: string;
+            metadata: {
+              lqip: string | null;
+              dimensions: {
+                width: number;
+                height: number;
+              } | null;
             } | null;
           } | null;
+          alt: string | null;
+          hotspot: SanityImageHotspot | null;
+          crop: SanityImageCrop | null;
         } | null;
-        alt: string | null;
-        hotspot: SanityImageHotspot | null;
-        crop: SanityImageCrop | null;
+      };
+      morgan: {
+        title: string | null;
+        text: string | null;
+        buttonText: string | null;
+        image: {
+          asset: {
+            _id: string;
+            url: string;
+            metadata: {
+              lqip: string | null;
+              dimensions: {
+                width: number;
+                height: number;
+              } | null;
+            } | null;
+          } | null;
+          alt: string | null;
+          hotspot: SanityImageHotspot | null;
+          crop: SanityImageCrop | null;
+        } | null;
+      } | null;
+      events: {
+        title: string | null;
+        hidePastEvents: boolean | null;
+        events: Array<{
+          _key: string;
+          eventDate: string;
+          title: string | null;
+          description: string | null;
+          link: string | null;
+        }> | null;
+      } | null;
+      merch: {
+        title: string | null;
+        description: string | null;
+        buttonText: string | null;
+      } | null;
+      gallery: {
+        images: Array<{
+          _key: string;
+          asset: {
+            _id: string;
+            url: string;
+            metadata: {
+              lqip: string | null;
+              dimensions: {
+                width: number;
+                height: number;
+              } | null;
+            } | null;
+          } | null;
+          alt: string | null;
+          hotspot: SanityImageHotspot | null;
+          crop: SanityImageCrop | null;
+        }> | null;
       } | null;
     }
   | null;
 
 // Source: sanity/queries/site-settings.ts
 // Variable: SITE_SETTINGS_QUERY
-// Query: *[_id == "siteSettings"][0]{  title,  description,  instagramUrl,  spotifyUrl}
+// Query: *[_id == "siteSettings"][0]{  title,  description,  instagramUrl,  spotifyUrl,  bandcampMerchUrl}
 export type SITE_SETTINGS_QUERY_RESULT =
   | {
-      title: string;
+      title: null;
       description: null;
       instagramUrl: null;
       spotifyUrl: null;
-    }
-  | {
-      title: string;
-      description: string;
-      instagramUrl: string | null;
-      spotifyUrl: string | null;
+      bandcampMerchUrl: null;
     }
   | {
       title: string | null;
       description: string | null;
       instagramUrl: null;
       spotifyUrl: null;
+      bandcampMerchUrl: null;
+    }
+  | {
+      title: string;
+      description: string;
+      instagramUrl: string | null;
+      spotifyUrl: string | null;
+      bandcampMerchUrl: string | null;
     }
   | null;
 
@@ -251,7 +390,7 @@ export type SITE_SETTINGS_QUERY_RESULT =
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    '*[_id == "homePage"][0]{\n  title,\n  subtitle,\n  albumImage{\n    asset->{\n      _id,\n      url,\n      metadata{ lqip, dimensions{ width, height } }\n    },\n    alt,\n    hotspot,\n    crop\n  }\n}': HOME_PAGE_QUERY_RESULT;
-    '*[_id == "siteSettings"][0]{\n  title,\n  description,\n  instagramUrl,\n  spotifyUrl\n}': SITE_SETTINGS_QUERY_RESULT;
+    '*[_id == "homePage"][0]{\n  "hero": {\n    "title": coalesce(hero.title, title),\n    "subtitle": coalesce(hero.subtitle, subtitle),\n    "buttonText": coalesce(hero.buttonText, "Listen Now"),\n    "albumImage": coalesce(hero.albumImage, albumImage){\n      asset->{\n        _id,\n        url,\n        metadata{ lqip, dimensions{ width, height } }\n      },\n      alt,\n      hotspot,\n      crop\n    }\n  },\n  morgan{\n    title,\n    text,\n    buttonText,\n    image{\n      asset->{\n        _id,\n        url,\n        metadata{ lqip, dimensions{ width, height } }\n      },\n      alt,\n      hotspot,\n      crop\n    }\n  },\n  events{\n    title,\n    hidePastEvents,\n    events[]{\n      _key,\n      eventDate,\n      title,\n      description,\n      link\n    }\n  },\n  merch{\n    title,\n    description,\n    buttonText\n  },\n  gallery{\n    images[]{\n      _key,\n      asset->{\n        _id,\n        url,\n        metadata{ lqip, dimensions{ width, height } }\n      },\n      alt,\n      hotspot,\n      crop\n    }\n  }\n}': HOME_PAGE_QUERY_RESULT;
+    '*[_id == "siteSettings"][0]{\n  title,\n  description,\n  instagramUrl,\n  spotifyUrl,\n  bandcampMerchUrl\n}': SITE_SETTINGS_QUERY_RESULT;
   }
 }

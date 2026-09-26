@@ -21,7 +21,7 @@ const NAV_LINKS = [
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-50 bg-brick/80 border-brick/20 backdrop-blur-sm shadow-md">
+    <header className="sticky top-0 z-50 bg-brick/90 border-brick/20 backdrop-blur-sm shadow-md">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-8">
         <Link href="/" className="flex flex-col leading-none">
           <span className="font-handwriting text-xl text-cream">

@@ -13,7 +13,7 @@ export function SiteFooter({ instagramUrl, spotifyUrl }: SiteFooterProps) {
         <span className="font-handwriting text-2xl">Morgan Alyse</span>
         <div className="flex items-center gap-5">
           <Link
-            href={instagramUrl || "https://instagram.com/"}
+            href={instagramUrl || "https://www.instagram.com/captainmorgie_/"}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Instagram"
@@ -25,7 +25,7 @@ export function SiteFooter({ instagramUrl, spotifyUrl }: SiteFooterProps) {
             </svg>
           </Link>
           <Link
-            href={spotifyUrl || "https://open.spotify.com/"}
+            href={spotifyUrl || "https://open.spotify.com/artist/1MuVQBPUPONIB3UHHJgc2W"}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Spotify"

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="paper-grain flex flex-1 items-center justify-center px-5 py-16 sm:px-8 sm:py-24">
+    <div className="bg-[url('/textures/floral.png')] bg-cover flex flex-1 items-center justify-center px-5 py-16 sm:px-8 sm:py-24">
       <div className="relative w-full max-w-xl border-4 border-white bg-cream/95 p-8 shadow-[0_12px_30px_rgba(36,20,17,0.2)] sm:p-12">
         <TapePiece className="-top-4 left-10 z-10" color="gold" rotate={-6} />
         <TapePiece className="-top-4 right-10 z-10" color="crimson" rotate={6} />

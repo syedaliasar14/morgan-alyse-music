@@ -1,4 +1,4 @@
-import { CogIcon, HomeIcon } from '@sanity/icons'
+import { CogIcon, DocumentIcon } from '@sanity/icons'
 import type { StructureResolver } from 'sanity/structure'
 
 const SINGLETONS = ['siteSettings', 'homePage']
@@ -17,16 +17,16 @@ export const structure: StructureResolver = (S) =>
             .documentId('siteSettings')
             .title('Site Settings')
         ),
+      S.divider(),
       S.listItem()
         .title('Home Page')
-        .icon(HomeIcon)
+        .icon(DocumentIcon)
         .child(
           S.document()
             .schemaType('homePage')
             .documentId('homePage')
             .title('Home Page')
         ),
-      S.divider(),
       ...S.documentTypeListItems().filter(
         (listItem) => !SINGLETONS.includes(listItem.getId() as string)
       ),

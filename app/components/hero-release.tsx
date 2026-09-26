@@ -1,16 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { TapePiece } from "@/components/decor/tape-piece";
-import { sanityFetch } from "@/sanity/lib/live";
-import { HOME_PAGE_QUERY } from "@/sanity/queries/home-page";
 import { urlFor } from "@/sanity/lib/image";
+import type { HOME_PAGE_QUERY_RESULT } from "@/sanity.types";
 
-export async function HeroRelease() {
-  const { data: homePage } = await sanityFetch({ query: HOME_PAGE_QUERY });
-
-  const title = homePage?.title ?? "Title";
-  const subtitle = homePage?.subtitle;
-  const albumImage = homePage?.albumImage;
+export function HeroRelease({ homePage }: { homePage: HOME_PAGE_QUERY_RESULT }) {
+  const title = homePage?.hero?.title ?? "Morgan Alyse";
+  const subtitle = homePage?.hero?.subtitle;
+  const buttonText = homePage?.hero?.buttonText ?? "Listen Now";
+  const albumImage = homePage?.hero?.albumImage;
 
   return (
     <section className="dotted-hearts-bg relative overflow-hidden border-b-2 border-brick/15 bg-cream">
@@ -24,7 +22,7 @@ export async function HeroRelease() {
           </h1>
           <div className="mt-8 flex flex-wrap gap-4">
             <Link href="#spotify" className="btn-primary">
-              Listen Now
+              {buttonText}
             </Link>
             <Link href="#events" className="btn-outline bg-cream hover:bg-crimson">
               See Events

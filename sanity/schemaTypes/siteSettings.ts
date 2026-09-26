@@ -32,6 +32,13 @@ export const siteSettings = defineType({
       type: 'url',
       validation: (rule) => rule.uri({ scheme: ['http', 'https'] }),
     }),
+    defineField({
+      name: 'bandcampMerchUrl',
+      title: 'Bandcamp Merch URL',
+      type: 'url',
+      initialValue: 'https://morganalyse1.bandcamp.com/merch',
+      validation: (rule) => rule.uri({ scheme: ['http', 'https'] }),
+    }),
   ],
   preview: {
     prepare() {
