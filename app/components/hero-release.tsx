@@ -11,7 +11,7 @@ export function HeroRelease({ homePage }: { homePage: HOME_PAGE_QUERY_RESULT }) 
   const albumImage = homePage?.hero?.albumImage;
 
   return (
-    <section className="dotted-hearts-bg relative overflow-hidden border-b-2 border-brick/15 bg-cream">
+    <section className="dotted-hearts-bg relative overflow-hidden border-b-2 border-brick/15 bg-cream pb-12">
       <div className="mx-auto relative z-10 grid max-w-6xl gap-10 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-2 lg:items-center">
         <div className="order-2 lg:order-1">
           {subtitle && (
@@ -33,7 +33,7 @@ export function HeroRelease({ homePage }: { homePage: HOME_PAGE_QUERY_RESULT }) 
         <div className="relative order-1 mx-auto w-full max-w-sm lg:order-2">
           <TapePiece className="-top-4 -left-4 z-10" color="crimson" rotate={-8} />
           <TapePiece className="-bottom-4 -right-4 z-10" color="gold" rotate={10} />
-          <div className="aspect-square rounded bg-white shadow-[0_12px_30px_rgba(36,20,17,0.25)] rotate-3 hover:rotate-1 transition-transform duration-300 hover:scale-105">
+          <div className="aspect-square rounded bg-white shadow-[0_12px_30px_rgba(36,20,17,0.25)] rotate-3 hover:rotate-2 transition-transform duration-500 hover:scale-105">
             {albumImage?.asset ? (
               <Image
                 src={urlFor(albumImage).width(600).height(600).url()}
@@ -52,7 +52,7 @@ export function HeroRelease({ homePage }: { homePage: HOME_PAGE_QUERY_RESULT }) 
         </div>
       </div>
 
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-40 bg-[url('/textures/floral.png')] bg-cover [mask-image:linear-gradient(to_bottom,transparent,black)]" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-50 bg-[url('/textures/floral.png')] bg-cover [mask-image:linear-gradient(to_bottom,transparent,black)]" />
     </section>
   );
 }

@@ -1,89 +1,81 @@
 "use client";
 
-import { useActionState } from "react";
-import { submitContactForm, type ContactFormState } from "@/app/contact/actions";
+import { useState } from 'react';
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import axios from "axios";
+import { Controller } from "react-hook-form";
+import { Field, FieldGroup, FieldError } from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 
-const initialState: ContactFormState = { status: "idle" };
+const schema = z.object({
+  name: z.string().min(1, "Name is required"),
+  email: z.email("Invalid email address"),
+  message: z.string().min(1, "Message is required"),
+})
 
 export function ContactForm() {
-  const [state, formAction, pending] = useActionState(submitContactForm, initialState);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const form = useForm<z.infer<typeof schema>>({
+    resolver: zodResolver(schema),
+    defaultValues: {
+      name: "",
+      email: "",
+      message: "",
+    },
+  });
+
+  async function onSubmit(data: z.infer<typeof schema>) {
+    setIsSubmitting(true);
+    setSubmitted(false);
+    try {
+      await axios.post("/api/contact", data);
+      form.reset();
+      setSubmitted(true);
+    } catch (error) {
+      console.error("Error submitting contact form:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
 
   return (
-    <form action={formAction} className="flex flex-col gap-5">
-      {/* Honeypot field, hidden from real visitors */}
-      <input
-        type="text"
-        name="company"
-        tabIndex={-1}
-        autoComplete="off"
-        className="hidden"
-        aria-hidden="true"
-      />
+    <form className="w-full" onSubmit={form.handleSubmit(onSubmit)}>
+      <FieldGroup>
 
-      <div className="flex flex-col gap-1.5">
-        <label htmlFor="name" className="font-display font-semibold text-ink">
-          Name
-        </label>
-        <input
-          id="name"
-          name="name"
-          type="text"
-          required
-          className="border-2 border-brick/30 bg-white px-4 py-2.5 outline-none focus:border-crimson"
+        <Controller name="name" control={form.control} render={({ field, fieldState }) => (
+          <Field data-invalid={fieldState.invalid}>
+            <Input {...field} id={field.name} aria-invalid={fieldState.invalid} autoComplete="off" placeholder="Your Name" />
+            {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+          </Field>
+        )}
         />
-        {state.fieldErrors?.name ? (
-          <p className="text-sm text-crimson">{state.fieldErrors.name}</p>
-        ) : null}
-      </div>
 
-      <div className="flex flex-col gap-1.5">
-        <label htmlFor="email" className="font-display font-semibold text-ink">
-          Email
-        </label>
-        <input
-          id="email"
-          name="email"
-          type="email"
-          required
-          className="border-2 border-brick/30 bg-white px-4 py-2.5 outline-none focus:border-crimson"
+        <Controller name="email" control={form.control} render={({ field, fieldState }) => (
+          <Field data-invalid={fieldState.invalid}>
+            <Input {...field} type="email" id={field.name} aria-invalid={fieldState.invalid} autoComplete="off" placeholder="Your Email" />
+            {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+          </Field>
+        )}
         />
-        {state.fieldErrors?.email ? (
-          <p className="text-sm text-crimson">{state.fieldErrors.email}</p>
-        ) : null}
-      </div>
 
-      <div className="flex flex-col gap-1.5">
-        <label htmlFor="message" className="font-display font-semibold text-ink">
-          Message
-        </label>
-        <textarea
-          id="message"
-          name="message"
-          rows={5}
-          required
-          className="resize-none border-2 border-brick/30 bg-white px-4 py-2.5 outline-none focus:border-crimson"
+        <Controller name="message" control={form.control} render={({ field, fieldState }) => (
+          <Field data-invalid={fieldState.invalid}>
+            <Textarea {...field} id={field.name} aria-invalid={fieldState.invalid} rows={4} placeholder="Your Message" />
+            {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+          </Field>
+        )}
         />
-        {state.fieldErrors?.message ? (
-          <p className="text-sm text-crimson">{state.fieldErrors.message}</p>
-        ) : null}
-      </div>
 
-      <button
-        type="submit"
-        disabled={pending}
-        className="btn-primary"
-      >
-        {pending ? "Sending..." : "Send Message"}
+      </FieldGroup>
+
+      <button type="submit" className="!w-full mt-4 btn-primary" disabled={isSubmitting}>
+        {isSubmitting ? "Sending..." : "Send"}
       </button>
-
-      {state.status === "success" ? (
-        <p className="font-script text-xl text-brick">
-          {state.message ?? "Thanks for reaching out!"}
-        </p>
-      ) : null}
-      {state.status === "error" && state.message ? (
-        <p className="text-sm text-crimson">{state.message}</p>
-      ) : null}
+      {submitted && <p className="mt-2 text-center">Message sent successfully!</p>}
     </form>
   );
 }
