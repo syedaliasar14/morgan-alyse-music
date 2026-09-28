@@ -16,7 +16,8 @@ export async function POST(req: NextRequest) {
       react: ContactEmail({
         name,
         email,
-        message
+        message,
+        siteTitle: config.title,
       }),
       replyTo: email
     });

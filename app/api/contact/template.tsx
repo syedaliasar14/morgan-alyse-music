@@ -2,60 +2,54 @@ interface Props {
   name: string;
   email: string;
   message: string;
+  siteTitle: string;
 }
 
-export default function ContactEmail({ name, email, message }: Props) {
-  const containerStyle = {
-    fontFamily: "Arial, sans-serif",
+export default function ContactEmail({ name, email, message, siteTitle }: Props) {
+  const bodyStyle = {
+    fontFamily: "Inter, Arial, Helvetica, sans-serif",
+    padding: "20px",
     backgroundColor: "#ffffff",
-    color: "#111111",
-    padding: "16px",
-    margin: 0,
   };
 
-  const cardStyle = {
+  const containerStyle = {
     maxWidth: "600px",
     margin: "0 auto",
-    border: "1px solid #e5e5e5",
     borderRadius: "8px",
-    padding: "16px",
+    border: "1px solid #e0e0e0",
+    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+    padding: "20px",
   };
 
-  const labelStyle = {
-    fontSize: "12px",
-    color: "#666666",
-    margin: "12px 0 4px",
-    textTransform: "uppercase" as const,
-    letterSpacing: "0.04em",
+  const contentStyle = {
+    color: "#271f30",
+    fontSize: "16px",
+    lineHeight: 1.5,
   };
 
-  const valueStyle = {
+  const footerStyle = {
     fontSize: "14px",
-    margin: 0,
-    whiteSpace: "pre-wrap" as const,
+    textAlign: "center" as const,
+    marginTop: "60px",
   };
 
   return (
-    <html>
-      <body style={containerStyle}>
-        <div style={cardStyle}>
-          <h1 style={{ fontSize: "18px", margin: "0 0 12px" }}>
-            New message from your website
-          </h1>
-
-          <p style={{ margin: "0 0 16px", fontSize: "14px", color: "#333333" }}>
-            Reply directly to this email to respond.
-          </p>
-
-          <div>
-            <p style={labelStyle}>Name</p>
-            <p style={valueStyle}>{name}</p>
-
-            <p style={labelStyle}>Email</p>
-            <p style={valueStyle}>{email}</p>
-
-            <p style={labelStyle}>Message</p>
-            <p style={valueStyle}>{message}</p>
+    <html lang="en">
+      <head>
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{`New Message from ${name}`}</title>
+      </head>
+      <body style={bodyStyle}>
+        <div style={containerStyle}>
+          <div style={contentStyle}>
+            <h2>New Message from {name}</h2>
+            <p style={{ whiteSpace: "pre-wrap" }}>{message}</p>
+          </div>
+          <div style={footerStyle}>
+            <p>Reply to this email to respond to {name}.</p>
+            <p>You&apos;re receiving this email because someone contacted you through your website.</p>
+            <p>&copy; {new Date().getFullYear()} {siteTitle}, all rights reserved.</p>
           </div>
         </div>
       </body>
