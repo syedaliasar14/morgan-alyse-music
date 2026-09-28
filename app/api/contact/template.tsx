@@ -10,6 +10,8 @@ export default function ContactEmail({ name, email, message, siteTitle }: Props)
     fontFamily: "Inter, Arial, Helvetica, sans-serif",
     padding: "20px",
     backgroundColor: "#ffffff",
+    WebkitTextSizeAdjust: "100%",
+    wordBreak: "break-word" as const,
   };
 
   const containerStyle = {
@@ -43,8 +45,8 @@ export default function ContactEmail({ name, email, message, siteTitle }: Props)
       <body style={bodyStyle}>
         <div style={containerStyle}>
           <div style={contentStyle}>
-            <h2>New Message from {name}</h2>
-            <p style={{ whiteSpace: "pre-wrap" }}>{message}</p>
+            <h2 style={{ margin: "0 0 12px" }}>New Message from {name}</h2>
+            <p style={{ whiteSpace: "pre-wrap", margin: 0 }}>{message}</p>
           </div>
           <div style={footerStyle}>
             <p>Reply to this email to respond to {name}.</p>
