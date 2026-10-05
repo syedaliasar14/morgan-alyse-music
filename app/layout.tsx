@@ -7,6 +7,8 @@ import { VisualEditing } from "next-sanity/visual-editing";
 import { draftMode } from "next/headers";
 import { sanityFetch } from "@/sanity/lib/live";
 import { SITE_SETTINGS_QUERY } from "@/sanity/queries/site-settings";
+import { config } from "@/config";
+import { urlFor } from "@/sanity/lib/image";
 
 const poppins = Poppins({
   variable: "--font-sans",
@@ -41,6 +43,11 @@ export async function generateMetadata(): Promise<Metadata> {
     description:
       siteSettings?.description ??
       "Official site for Morgan Alyse — new releases, events, and more by Worcester's Sweetheart, herself.",
+    openGraph: {
+      title: siteSettings?.title || config.title,
+      description: siteSettings?.description || config.description,
+      images: siteSettings?.image ? [urlFor(siteSettings.image).width(1200).height(630).url()] : undefined,
+    }
   };
 }
 

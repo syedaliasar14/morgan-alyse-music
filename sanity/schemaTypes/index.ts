@@ -1,6 +1,6 @@
 import { type SchemaTypeDefinition } from 'sanity'
 
-import { aboutPage, aboutPageSection } from './aboutPage'
+import { aboutPage, aboutPageSection } from './about-page'
 import {
   homePage,
   homePageEvent,
@@ -10,8 +10,8 @@ import {
   homePageImage,
   homePageMerch,
   homePageMorgan,
-} from './homePage'
-import { siteSettings } from './siteSettings'
+} from './home-page'
+import { siteSettings } from './site-settings'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [

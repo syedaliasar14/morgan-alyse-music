@@ -103,9 +103,32 @@ export type SiteSettings = {
   _rev: string;
   title: string;
   description: string;
+  image?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
   instagramUrl?: string;
   spotifyUrl?: string;
   bandcampMerchUrl?: string;
+};
+
+export type SanityImageCrop = {
+  _type: "sanity.imageCrop";
+  top: number;
+  bottom: number;
+  left: number;
+  right: number;
+};
+
+export type SanityImageHotspot = {
+  _type: "sanity.imageHotspot";
+  x: number;
+  y: number;
+  height: number;
+  width: number;
 };
 
 export type AboutPageSection = {
@@ -128,22 +151,6 @@ export type AboutPage = {
       _key: string;
     } & AboutPageSection
   >;
-};
-
-export type SanityImageCrop = {
-  _type: "sanity.imageCrop";
-  top: number;
-  bottom: number;
-  left: number;
-  right: number;
-};
-
-export type SanityImageHotspot = {
-  _type: "sanity.imageHotspot";
-  x: number;
-  y: number;
-  height: number;
-  width: number;
 };
 
 export type SanityImagePaletteSwatch = {
@@ -260,10 +267,10 @@ export type AllSanitySchemaTypes =
   | HomePageHero
   | HomePage
   | SiteSettings
-  | AboutPageSection
-  | AboutPage
   | SanityImageCrop
   | SanityImageHotspot
+  | AboutPageSection
+  | AboutPage
   | SanityImagePaletteSwatch
   | SanityImagePalette
   | SanityImageDimensions
@@ -446,11 +453,12 @@ export type HOME_PAGE_QUERY_RESULT =
 
 // Source: sanity/queries/site-settings.ts
 // Variable: SITE_SETTINGS_QUERY
-// Query: *[_id == "siteSettings"][0]{  title,  description,  instagramUrl,  spotifyUrl,  bandcampMerchUrl}
+// Query: *[_id == "siteSettings"][0]{  title,  description,  image,  instagramUrl,  spotifyUrl,  bandcampMerchUrl}
 export type SITE_SETTINGS_QUERY_RESULT =
   | {
       title: null;
       description: null;
+      image: null;
       instagramUrl: null;
       spotifyUrl: null;
       bandcampMerchUrl: null;
@@ -458,6 +466,7 @@ export type SITE_SETTINGS_QUERY_RESULT =
   | {
       title: string | null;
       description: string | null;
+      image: null;
       instagramUrl: null;
       spotifyUrl: null;
       bandcampMerchUrl: null;
@@ -465,6 +474,13 @@ export type SITE_SETTINGS_QUERY_RESULT =
   | {
       title: string;
       description: string;
+      image: {
+        asset?: SanityImageAssetReference;
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+      } | null;
       instagramUrl: string | null;
       spotifyUrl: string | null;
       bandcampMerchUrl: string | null;
@@ -477,6 +493,6 @@ declare module "@sanity/client" {
   interface SanityQueries {
     '*[_id == "aboutPage"][0]{\n  "morganSection": morganSection{\n  _key,\n  title,\n  text,\n  image{\n    alt,\n    asset->{ _id, url }\n  }\n},\n  "bandSection": bandSection{\n  _key,\n  title,\n  text,\n  image{\n    alt,\n    asset->{ _id, url }\n  }\n},\n  "additionalSections": additionalSections[]{\n  _key,\n  title,\n  text,\n  image{\n    alt,\n    asset->{ _id, url }\n  }\n}\n}': ABOUT_PAGE_QUERY_RESULT;
     '*[_id == "homePage"][0]{\n  "hero": {\n    "title": coalesce(hero.title, title),\n    "subtitle": coalesce(hero.subtitle, subtitle),\n    "buttonText": coalesce(hero.buttonText, "Listen Now"),\n    "albumImage": coalesce(hero.albumImage, albumImage){\n      asset->{\n        _id,\n        url,\n        metadata{ lqip, dimensions{ width, height } }\n      },\n      alt,\n      hotspot,\n      crop\n    }\n  },\n  morgan{\n    title,\n    text,\n    buttonText,\n    image{\n      asset->{\n        _id,\n        url,\n        metadata{ lqip, dimensions{ width, height } }\n      },\n      alt,\n      hotspot,\n      crop\n    }\n  },\n  events{\n    title,\n    hidePastEvents,\n    events[]{\n      _key,\n      eventDate,\n      title,\n      description,\n      link\n    }\n  },\n  merch{\n    title,\n    description,\n    buttonText\n  },\n  gallery{\n    images[]{\n      _key,\n      asset->{\n        _id,\n        url,\n        metadata{ lqip, dimensions{ width, height } }\n      },\n      alt,\n      hotspot,\n      crop\n    }\n  }\n}': HOME_PAGE_QUERY_RESULT;
-    '*[_id == "siteSettings"][0]{\n  title,\n  description,\n  instagramUrl,\n  spotifyUrl,\n  bandcampMerchUrl\n}': SITE_SETTINGS_QUERY_RESULT;
+    '*[_id == "siteSettings"][0]{\n  title,\n  description,\n  image,\n  instagramUrl,\n  spotifyUrl,\n  bandcampMerchUrl\n}': SITE_SETTINGS_QUERY_RESULT;
   }
 }
